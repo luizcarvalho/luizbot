@@ -22,6 +22,6 @@ end
 Telegram::Bot::Client.run(ENV['TELEGRAM_TOKEN']) do |bot|
   bot.listen do |message|
     puts "#{message.from.first_name}[#{message.chat.id}]: #{message.text}"
-    handle(bot, message, client) if message.chat.id == ENV['OWNER_ID']
+    handle(bot, message, client) if message.chat.id == ENV['OWNER_ID'].to_i
   end
 end
