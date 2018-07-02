@@ -15,6 +15,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.5.0)
     equalizer (0.0.11)
     faraday (0.15.2)
       multipart-post (>= 1.2, < 3)
@@ -50,6 +51,7 @@ PLATFORMS
 
 DEPENDENCIES
   api-ai-ruby
+  dotenv
   telegram-bot-ruby
 
 BUNDLED WITH

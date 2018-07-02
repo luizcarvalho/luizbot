@@ -1,10 +1,8 @@
 require 'telegram/bot'
 require 'api-ai-ruby'
 
-token = '332044997:AAGuE9cJ6HR9scKbqcGHi9MvZVpgtFIzu0M'
-
 client = ApiAiRuby::Client.new(
-  client_access_token: 'd6e53ced20c14bb3ae197e9e03979d0c'
+  client_access_token: ENV['DIALOGFLOW_TOKEN']
 )
 puts 'bot listen...'
 
@@ -20,9 +18,9 @@ def handle(bot, message, client)
   end
 end
 
-Telegram::Bot::Client.run(token) do |bot|
+Telegram::Bot::Client.run(ENV['TELEGRAM_TOKEN']) do |bot|
   bot.listen do |message|
     puts "#{message.from.first_name}[#{message.chat.id}]: #{message.text}"
-    handle(bot, message, client) if message.chat.id == 51112220
+    handle(bot, message, client) if message.chat.id == ENV['OWNER_ID']
   end
 end
