@@ -1,3 +1,4 @@
+require 'dotenv/load'
 require 'telegram/bot'
 require 'api-ai-ruby'
 
