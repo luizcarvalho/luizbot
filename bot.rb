@@ -16,7 +16,12 @@ def handle(bot, message, client)
     bot.api.send_message(chat_id: message.chat.id, text: "Bye, #{message.from.first_name}")
   else
     response = client.text_request message.text
-    bot.api.send_message(chat_id: message.chat.id, text: response.dig(:result,:fulfillment,:messages).first[:speech])
+    text = response.dig(:result,:fulfillment,:messages).first[:speech] || 'opps'
+    bot.api.send_message(
+                           chat_id: message.chat.id,
+                           text: text,
+                           parse_mode: 'markdown'
+                         )
   end
 end
 
