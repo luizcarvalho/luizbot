@@ -9,6 +9,7 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
+    buftok (0.2.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     descendants_tracker (0.0.4)
@@ -17,7 +18,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.5.0)
     equalizer (0.0.11)
-    faraday (0.15.2)
+    faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
     http (2.2.2)
       addressable (~> 2.3)
@@ -30,13 +31,27 @@ GEM
     http_parser.rb (0.6.0)
     ice_nine (0.11.2)
     inflecto (0.0.2)
+    memoizable (0.4.2)
+      thread_safe (~> 0.3, >= 0.3.1)
     multipart-post (2.0.0)
-    public_suffix (3.0.2)
+    naught (1.1.0)
+    public_suffix (3.0.3)
+    simple_oauth (0.3.1)
     telegram-bot-ruby (0.8.6.1)
       faraday
       inflecto
       virtus
     thread_safe (0.3.6)
+    twitter (6.1.0)
+      addressable (~> 2.5)
+      buftok (~> 0.2.0)
+      equalizer (= 0.0.11)
+      faraday (~> 0.11.0)
+      http (~> 2.1)
+      http_parser.rb (~> 0.6.0)
+      memoizable (~> 0.4.2)
+      naught (~> 1.1)
+      simple_oauth (~> 0.3.1)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
@@ -53,6 +68,7 @@ DEPENDENCIES
   api-ai-ruby
   dotenv
   telegram-bot-ruby
+  twitter (~> 6.0)
 
 BUNDLED WITH
-   1.16.1
+   1.17.3
