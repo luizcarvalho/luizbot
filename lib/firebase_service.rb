@@ -1,3 +1,9 @@
+# require 'httplog'
+
+# HttpLog.configure do |config|
+#   config.log_headers   = true
+# end
+
 module LuizBot
   class FirebaseService
     INFO_TAG = 'info'.freeze
@@ -16,8 +22,7 @@ module LuizBot
     def get(text_message)
       data = convert_text_message(text_message)
       return 'FAIL' unless data
-
-      response = @fbase.client.get(INFO_TAG, { orderBy: "label", equalTo: data[:label]}.to_json)
+      response = @fbase.client.get(INFO_TAG, { orderBy: "\"label\"", equalTo: "\"#{data[:label]}\""})
       getting_value(response)
     end
 
@@ -67,7 +72,7 @@ module LuizBot
     end
 
     def convert_text_message(text_message)
-      result = text_message.scan(/^(\/\w*)\s*(\w*)\s*(.*)/)[0]
+      result = text_message.scan(/(\/\w*)\s*(\w*)\s*(.*)/m)[0]
       return unless  result
 
       {label: result[1], value: result[2]}
