@@ -8,26 +8,31 @@
 module LuizBot
 
   class Handler
+    def initialize
+      @apiai_client = ApiAiRuby::Client.new(
+        client_access_token: ENV['DIALOGFLOW_TOKEN']
+      )
 
-    @apiai_client = ApiAiRuby::Client.new(
-      client_access_token: ENV['DIALOGFLOW_TOKEN']
-    )
+      @firebase = FBase.new
+    end
 
 
-    def self.fetch_data(bot, message)
-      bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
-    end
-    def self.send_data(bot, message)
-      bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
-    end
-    def self.list_options(bot, message)
-      bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
-    end
-    def self.update_data(bot, message)
+    def send_data(bot, message)
+
       bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
     end
 
-    def self.default(bot, message)
+    def fetch_data(bot, message)
+      bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
+    end
+    def list_options(bot, message)
+      bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
+    end
+    def update_data(bot, message)
+      bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
+    end
+
+    def default(bot, message)
       response = @apiai_client.text_request message.text
       text = response.dig(:result,:fulfillment,:messages).first[:speech] || 'opps'
       bot.api.send_message(

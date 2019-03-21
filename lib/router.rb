@@ -16,16 +16,17 @@ module LuizBot
     end
 
     def self.dispatch(bot, text_message)
+      handler = Handler.new
       matcheds = routes.map do |rule|
         if matches_pattern?(rule.pattern, text_message.text)
-          Handler.send(rule.action, bot, text_message)
+          handler.send(rule.action, bot, text_message)
         end
       end
 
       if matcheds.any?
         true
       else
-        Handler.send(:default, bot, text_message)
+        handler.send(:default, bot, text_message)
         false
       end
 
