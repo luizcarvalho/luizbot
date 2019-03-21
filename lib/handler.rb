@@ -13,20 +13,22 @@ module LuizBot
         client_access_token: ENV['DIALOGFLOW_TOKEN']
       )
 
-      @firebase = FBase.new
+      @firebase = FirebaseService.new
     end
 
 
     def send_data(bot, message)
-
-      bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
+      result_message = @firebase.push(message.text)
+      bot.api.send_message(chat_id: message.chat.id, text: result_message, parse_mode: 'markdown')
     end
 
     def fetch_data(bot, message)
-      bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
+      result_message = @firebase.get(message.text)
+      bot.api.send_message(chat_id: message.chat.id, text: result_message, parse_mode: 'markdown')
     end
     def list_options(bot, message)
-      bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
+      result_message = @firebase.list(message.text)
+      bot.api.send_message(chat_id: message.chat.id, text: result_message, parse_mode: 'markdown')
     end
     def update_data(bot, message)
       bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
