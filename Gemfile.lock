@@ -62,7 +62,7 @@ GEM
     naught (1.1.0)
     os (0.9.6)
     public_suffix (4.0.1)
-    rack (2.0.7)
+    rack (2.0.8)
     rainbow (3.0.0)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
