@@ -1,14 +1,13 @@
-=begin
-  /set prisma placa `123123`\nrenavan `000000`
-  /update prisma placa `123123`\nrenavan `000001`
-  /list
-  /get prisma
-=end
-
+# frozen_string_literal: true
 require_relative 'modules/amazon'
 
-module LuizBot
+#   /set prisma placa `123123`\nrenavan `000000`
+#   /update prisma placa `123123`\nrenavan `000001`
+#   /list
+#   /get prisma
 
+
+module LuizBot
   class Handler
     def initialize
       @apiai_client = ApiAiRuby::Client.new(
@@ -17,7 +16,6 @@ module LuizBot
 
       @firebase = FirebaseService.new
     end
-
 
     def send_data(bot, message)
       result_message = @firebase.push(message.text)
@@ -28,10 +26,12 @@ module LuizBot
       result_message = @firebase.get(message.text)
       bot.api.send_message(chat_id: message.chat.id, text: result_message, parse_mode: 'markdown')
     end
+
     def list_options(bot, message)
       result_message = @firebase.list(message.text)
       bot.api.send_message(chat_id: message.chat.id, text: result_message, parse_mode: 'markdown')
     end
+
     def update_data(bot, message)
       bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
     end
@@ -44,14 +44,23 @@ module LuizBot
 
     def default(bot, message)
       response = @apiai_client.text_request message.text
-      text = response.dig(:result,:fulfillment,:messages).first[:speech] || 'opps'
-      bot.api.send_message(
-                             chat_id: message.chat.id,
-                             text: text,
-                             parse_mode: 'markdown'
-                           )
+      text = response.dig(:result, :fulfillment, :messages).first[:speech] || 'opps, error in get Dialogflow response'
+      send_message(bot, text)
+    rescue StandardError => e
+      send_message(bot, scape_text("ERROR: #{e.message}"))
     end
 
+    def send_message(bot, text)
+      puts scape_text(text)
+      bot.api.send_message(
+        chat_id: ENV['OWNER_ID'].to_i,
+        text: text,
+        parse_mode: 'markdown'
+      )
+    end
 
+    def scape_text(text)
+      text.gsub(/[^0-9A-Za-z\s$]/, '')
+    end
   end
 end
