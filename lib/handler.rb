@@ -5,6 +5,8 @@
   /get prisma
 =end
 
+require_relative 'modules/amazon'
+
 module LuizBot
 
   class Handler
@@ -32,6 +34,12 @@ module LuizBot
     end
     def update_data(bot, message)
       bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
+    end
+
+    def amazon_url(bot, message)
+      amazon = Amazon.new(message.text)
+      
+      bot.api.send_message(chat_id: message.chat.id, text: amazon.convert_link)
     end
 
     def default(bot, message)
