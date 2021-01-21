@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'api-ai-ruby'
-gem 'telegram-bot-ruby'
 gem 'dotenv'
 gem 'firebase'
-gem 'rspec'
+gem 'google-api-client'
 gem 'httplog'
-
+gem 'rspec'
+gem 'telegram-bot-ruby'

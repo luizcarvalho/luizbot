@@ -1,21 +1,19 @@
 require 'dotenv/load'
 require 'telegram/bot'
+require_relative './lib/schedules/contas_scheduler'
 
-START_HOUR = 8
-END_HOUR = 18
+bot = Telegram::Bot::Client.new(ENV['TELEGRAM_TOKEN'])
+messages = []
 
-quantidade = ENV["QUANTIDADE"].to_i || 660
-IOF = ENV["IOF"].to_f || 0.0638
+contas_scheduler = ContasScheduler.new
 
-if START_HOUR <= Time.now.hour && Time.now.hour <= END_HOUR
-  response = Faraday.get ENV['CAMBIO_ENDPOINT']
-  euro_price = JSON.parse(response.body)['EUR']['RateToBRL'].to_f
-  bot = Telegram::Bot::Client.new(ENV['TELEGRAM_TOKEN'])
+messages += contas_scheduler.verify
 
-  resultado = "💶 EURO: R$ #{euro_price} \n"\
-              "🔢 Quantidade #{quantidade}\n"\
-              "#️⃣ Valor #{euro_price * quantidade} \n\n"\
-              "🔰 TOTAL: R$  #{((euro_price + (euro_price * IOF)) * quantidade).round(2)}"
+def send_message(bot, message)
+  puts bot.api.send_message(chat_id: ENV['OWNER_ID'], text: message)
+end
 
-  bot.api.send_message(chat_id: ENV['OWNER_ID'], text: resultado)
+messages.each do |message|
+  puts "Sending message:\n\n #{message}"
+  send_message(bot, message)
 end
