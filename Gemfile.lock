@@ -140,13 +140,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  api-ai-ruby
-  dotenv
-  firebase
-  google-api-client
-  httplog
-  rspec
-  telegram-bot-ruby
+  api-ai-ruby (~> 2.1)
+  dotenv (~> 2.7)
+  firebase (~> 0.2)
+  google-api-client (~> 0.53)
+  httplog (~> 1.4)
+  rspec (~> 3.10)
+  telegram-bot-ruby (~> 0.14)
 
 RUBY VERSION
    ruby 2.7.2p137
