@@ -38,7 +38,7 @@ module LuizBot
 
     def amazon_url(bot, message)
       amazon = Amazon.new(message.text)
-      
+
       bot.api.send_message(chat_id: message.chat.id, text: amazon.convert_link)
     end
 
@@ -47,7 +47,8 @@ module LuizBot
       text = response.dig(:result, :fulfillment, :messages).first[:speech] || 'opps, error in get Dialogflow response'
       send_message(bot, text)
     rescue StandardError => e
-      send_message(bot, scape_text("ERROR: #{e.message}"))
+      puts e.backtrace
+      send_message(bot, scape_text("ERROR: #{e.message}\n\n#{e.backtrace.join("\n")}"))
     end
 
     def send_message(bot, text)

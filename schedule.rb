@@ -10,7 +10,7 @@ contas_scheduler = ContasScheduler.new
 messages += contas_scheduler.verify
 
 def send_message(bot, message)
-  puts bot.api.send_message(chat_id: ENV['OWNER_ID'], text: message)
+  bot.api.send_message(chat_id: ENV['OWNER_ID'], text: message)
 end
 
 messages.each do |message|
