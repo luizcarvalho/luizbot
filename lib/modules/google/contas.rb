@@ -49,10 +49,10 @@ class Contas
   private
 
   def verify_date_range(date)
-    initial_date = Date.today - 3
-    final_date = Date.today + 2
-    # puts "verify range: #{initial_date} <= #{date} < #{final_date}"
-    initial_date <= date && date < final_date
+    initial_date = Date.today - 10
+    final_date = Date.today + 4
+    # puts "verify range: #{initial_date} <= #{date} <= #{final_date}"
+    initial_date <= date && date <= final_date
   end
 
   def convert_date(date)

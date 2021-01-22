@@ -7,28 +7,31 @@ class ContasScheduler
   end
 
   def verify
-    return [] unless notification_conditional
-
+    return unless notification_conditional
     format_message(@contas.close_bills_duedates)
   end
 
   def format_message(bills)
-    return [] if bills.empty?
+    return if bills.empty?
 
-    ENV['LAST_NOTIFICATION_DAY'] = Date.today.day.to_s
+    message = message_header
 
-    bills.map do |bill|
-      message = "⚠️ Conta prestes a vencer ou vencida ⚠️\n\n#{bill[:conta]} [#{bill[:row]}]\n" \
+    bills.each do |bill|
+      message += "\n\n#{bill[:conta]} [#{bill[:row]}]\n" \
                 "📆 Mês referência: #{bill[:mes]}\n⏳ Data de vencimento: #{bill[:vencimento]}\n"\
                 "💲 Valor: #{bill[:valor]}\n"
       message += "🔢 Código de pagamento: `#{bill[:codigo]}`\n" if bill[:codigo]
       message += "🏧 Data de pagamento: #{bill[:pagamento]}\n" if bill[:pagamento]
-
-      message
     end
+    message
+  end
+
+  def message_header
+    "⚠️⚠️⚠️\nEiii seu veaco, bora pagar as contas né? Tão atrasadas!"
   end
 
   def notification_conditional
     Time.now.hour >= 8 && Time.now.hour <= 11
+    true
   end
 end
