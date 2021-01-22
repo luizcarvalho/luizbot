@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require_relative 'modules/amazon'
+require_relative 'modules/amazon/amazon'
 
 #   /set prisma placa `123123`\nrenavan `000000`
 #   /update prisma placa `123123`\nrenavan `000001`
