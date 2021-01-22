@@ -29,6 +29,6 @@ class ContasScheduler
   end
 
   def notification_conditional
-    Time.now.hour >= 8 && Time.now.hour <= 18
+    Time.now.hour >= 8 && Time.now.hour <= 24
   end
 end
