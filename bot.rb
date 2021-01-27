@@ -1,6 +1,8 @@
 require 'dotenv/load'
 require 'telegram/bot'
 require 'api-ai-ruby'
+
+require_relative './lib/modules/promoluiz/promoluiz'
 require_relative './config/routes'
 require_relative './lib/luiz_bot'
 require_relative './lib/utils'

@@ -5,5 +5,5 @@ class Routes < LuizBot::Router
   match(/\/set/, action: 'send_data')
   match(/\/list/, action: 'list_options')
   match(/\/update/, action: 'update_data')
-  match(/amazon\.com/, action: 'amazon_url')
+  match(Promoluiz::DETECT_REGEX, action: 'amazon_promotion')
 end

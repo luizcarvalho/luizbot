@@ -36,10 +36,12 @@ module LuizBot
       bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
     end
 
-    def amazon_url(bot, message)
-      amazon = Amazon.new(message.text)
+    def amazon_promotion(bot, message)
+      promoluiz = Promoluiz.new(message.text)
 
-      bot.api.send_message(chat_id: message.chat.id, text: amazon.convert_link)
+      send_message(
+        bot, promoluiz.message_versions
+      )
     end
 
     def default(bot, message)
@@ -52,7 +54,6 @@ module LuizBot
     end
 
     def send_message(bot, text)
-      puts scape_text(text)
       bot.api.send_message(
         chat_id: ENV['OWNER_ID'].to_i,
         text: text,
