@@ -24,6 +24,7 @@ class Promoluiz
 
   def message_versions
     converted_promocoes = fetch_converted_promocoes
-    "```#{converted_promocoes['message_amazon']}```\n\n#{'🔹' * 10}\n\n ```#{converted_promocoes['message_promocao']}```"
+    "```#{converted_promocoes['message_promocao']}```"
+    # "```#{converted_promocoes['message_amazon']}```\n\n#{'🔹' * 10}\n\n ```#{converted_promocoes['message_promocao']}```"
   end
 end
