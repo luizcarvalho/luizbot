@@ -18,13 +18,13 @@ class Promoluiz
       { "promocao": { "promotional_text": @message } }.to_json,
       'Content-Type' => 'application/json'
     )
-    putz response.body
+
     JSON.parse(response.body)
   end
 
   def message_versions
     converted_promocoes = fetch_converted_promocoes
-    putz converted_promocoes
+
     "```\n#{converted_promocoes['message_promocao']}\n```"
   end
 end
