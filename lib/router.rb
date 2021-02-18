@@ -8,7 +8,7 @@ module LuizBot
 
     def self.match(pattern, action:, options: {})
       puts "creating route #{pattern}"
-      routes << RouteRule.new(pattern, action,  options)
+      routes << RouteRule.new(pattern, action, options)
     end
 
     def self.routes
@@ -18,9 +18,7 @@ module LuizBot
     def self.dispatch(bot, text_message)
       handler = Handler.new
       matcheds = routes.map do |rule|
-        if matches_pattern?(rule.pattern, text_message.text)
-          handler.send(rule.action, bot, text_message)
-        end
+        handler.send(rule.action, bot, text_message) if matches_pattern?(rule.pattern, text_message.text)
       end
 
       if matcheds.any?
@@ -29,12 +27,10 @@ module LuizBot
         handler.send(:default, bot, text_message)
         false
       end
-
     end
 
     def self.matches_pattern?(pattern, text_message)
       pattern === text_message
     end
-
   end
 end

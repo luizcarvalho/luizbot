@@ -36,6 +36,17 @@ module LuizBot
       bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
     end
 
+    def gasotoca(bot, message)
+      gasotoca = GasotocaWrapper.new(message)
+
+      send_message(
+        bot, gasotoca.message
+      )
+    rescue StandardError => e
+      puts e.backtrace
+      send_message(bot, scape_text("ERROR: #{e.message}"))
+    end
+
     def amazon_promotion(bot, message)
       promoluiz = Promoluiz.new(message.text)
 
