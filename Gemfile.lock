@@ -1,5 +1,7 @@
-PATH
-  remote: ../gems/gasotoca
+GIT
+  remote: https://github.com/luizcarvalho/gasotoca
+  revision: 2b3eb53550e4690c32b00c6f2bcd9e85a068f616
+  branch: main
   specs:
     gasotoca (0.1.1)
       daru (~> 0.3)
