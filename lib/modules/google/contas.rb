@@ -11,26 +11,6 @@ class Contas
     @range = "#{EXPIRATION_DATES_COLUMN}2:#{EXPIRATION_DATES_COLUMN}100"
   end
 
-  def expiration_dates
-    row_dates = []
-    response = @service.get_spreadsheet_values SPREADSHEET_ID, @range
-
-    response.values.each_with_index do |date, index|
-      row_dates << { row: index + 2, date: convert_date(date[0]) }
-    end
-
-    row_dates
-  end
-
-  def bill_info(row)
-    response = @service.get_spreadsheet_values SPREADSHEET_ID, "A#{row}:F#{row}"
-    bill = response&.values&.pop
-    {
-      mes: bill[0], conta: bill[1], vencimento: bill[2], valor: bill[3],
-      pagamento: bill[4], codigo: bill[5], row: row
-    }
-  end
-
   def close_bills_duedates
     bills_duedates = []
     expiration_dates.each do |date|
@@ -39,11 +19,33 @@ class Contas
 
       bill = bill_info(date[:row])
       # puts "Verify payment: #{payment}"
-
       bills_duedates << bill unless bill[:pagamento]
-
     end
+
     bills_duedates
+  end
+
+  def expiration_dates
+    row_dates = []
+    response = @service.get_spreadsheet_values SPREADSHEET_ID, @range
+
+    response.values.each_with_index do |date, index|
+      next unless date[0]
+
+      row_dates << { row: index + 2, date: convert_date(date[0]) }
+    end
+
+    row_dates
+  end
+
+  def bill_info(row)
+    response = @service.get_spreadsheet_values SPREADSHEET_ID, "A#{row}:F#{row}"
+
+    bill = response&.values&.pop
+    {
+      mes: bill[0], conta: bill[1], vencimento: bill[2], valor: bill[3],
+      pagamento: bill[4], codigo: bill[5], row: row
+    }
   end
 
   private

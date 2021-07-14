@@ -4,7 +4,7 @@ require 'googleauth/stores/file_token_store'
 require 'fileutils'
 
 OOB_URI = 'urn:ietf:wg:oauth:2.0:oob'.freeze
-APPLICATION_NAME = 'Google Sheets API Ruby Quickstart'.freeze
+APPLICATION_NAME = 'Luiz Bill Monitor'.freeze
 CREDENTIALS_PATH = JSON.parse(ENV['GOOGLE_CREDENTIALS'])
 # The file token.yaml stores the user's access and refresh tokens, and is
 # created automatically when the authorization flow completes for the first
@@ -12,6 +12,8 @@ CREDENTIALS_PATH = JSON.parse(ENV['GOOGLE_CREDENTIALS'])
 TOKEN_PATH = 'config/token.yaml'.freeze
 SCOPE = Google::Apis::SheetsV4::AUTH_SPREADSHEETS_READONLY
 
+# uncomment this for request debug
+# Faraday.default_connection.response :logger
 
 def create_token_file
   File.open(TOKEN_PATH, 'w') { |file| file.write(ENV['GOOGLE_TOKEN']) }
@@ -39,6 +41,7 @@ def authorize
       user_id: user_id, code: code, base_url: OOB_URI
     )
   end
+
   credentials
 end
 
@@ -46,6 +49,8 @@ end
 def authorize_service
   service = Google::Apis::SheetsV4::SheetsService.new
   service.client_options.application_name = APPLICATION_NAME
+  service.client_options.application_version = '1.0'
   service.authorization = authorize
+
   service
 end

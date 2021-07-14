@@ -14,6 +14,8 @@ def send_message(bot, message)
 end
 
 messages.each do |message|
+  next unless message
+
   puts "Sending message:\n\n #{message}"
   send_message(bot, message)
 end
