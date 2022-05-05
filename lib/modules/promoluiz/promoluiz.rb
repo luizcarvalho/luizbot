@@ -11,7 +11,7 @@ class Promoluiz
 
   def fetch_converted_promocoes
     conn = Faraday.new BASE_URL
-    conn.basic_auth('luizcarvalho', 'swordfish1pr')
+    conn.request(:basic_auth, ENV['PROMOLUIZ_USERNAME'], ENV['PROMOLUIZ_PASSWORD'])
 
     response = conn.post(
       'promocoes.json',

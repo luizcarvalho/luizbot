@@ -2,5 +2,5 @@
 # require_relative './euros'
 # require_relative './amazon/amazon.rb'
 require_relative './promoluiz/promoluiz'
-require_relative './gasotoca/gasotoca_wrapper'
+# require_relative './gasotoca/gasotoca_wrapper'
 require_relative './google/contas'
