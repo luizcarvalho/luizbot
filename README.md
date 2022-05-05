@@ -1,5 +1,12 @@
 # A Telegram bot assitant
 
-## Starting
+## Getting Started
+
+### Run bot
 
    bundle exec dotenv ruby bot.rb
+
+### Running schedule
+
+   bundle exec dotenv ruby schedule.rb
+

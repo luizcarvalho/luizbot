@@ -6,6 +6,7 @@ gem 'dotenv', '~> 2.7'
 gem 'firebase', '~> 0.2'
 gem 'google-apis-sheets_v4', '~> 0.2'
 gem 'httplog', '~> 1.5'
+gem 'nokogiri'
 gem 'rspec', '~> 3.11'
 gem 'telegram-bot-ruby', '~> 0.19'
 
