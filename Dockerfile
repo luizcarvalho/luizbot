@@ -3,8 +3,12 @@ FROM ruby:3.1.1-slim
 RUN apt-get update && apt-get install build-essential -y
 
 RUN mkdir /app
-ADD . /app/
 WORKDIR /app/
 
+COPY Gemfile /app/Gemfile
+COPY Gemfile.lock /app/Gemgfile.lock
 RUN bundle install
-CMD ["bundle exec ruby -v"]
+
+ADD . /app/
+
+CMD ["bundle","exec","ruby","bot.rb"]

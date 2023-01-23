@@ -3,7 +3,6 @@ services:
   app:
     build:
       context: .
-    command: bundle exec ruby bot.rb
     volumes:
       - .:/app
     env_file:
