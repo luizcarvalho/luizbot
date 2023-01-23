@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '3.1.1'
 
 gem 'dotenv', '~> 2.7'
+gem 'faraday-digestauth'
 gem 'firebase', '~> 0.2'
 gem 'nokogiri', '1.14'
 

@@ -25,6 +25,9 @@ GEM
     faraday (2.7.4)
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
+    faraday-digestauth (0.4.1)
+      faraday (>= 0.7)
+      net-http-digest_auth (~> 1.4)
     faraday-multipart (1.0.4)
       multipart-post (~> 2)
     faraday-net_http (3.0.2)
@@ -75,6 +78,7 @@ GEM
     minitest (5.17.0)
     multi_json (1.15.0)
     multipart-post (2.2.3)
+    net-http-digest_auth (1.4.1)
     nokogiri (1.14.0-x86_64-linux)
       racc (~> 1.4)
     os (1.1.4)
@@ -132,6 +136,7 @@ PLATFORMS
 
 DEPENDENCIES
   dotenv (~> 2.7)
+  faraday-digestauth
   firebase (~> 0.2)
   google-api-client (~> 0.53)
   httplog (~> 1.4)
@@ -144,4 +149,4 @@ RUBY VERSION
    ruby 3.1.1p18
 
 BUNDLED WITH
-   2.3.17
+   2.3.7

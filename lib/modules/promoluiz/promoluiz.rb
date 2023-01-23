@@ -1,4 +1,5 @@
 require 'faraday'
+require 'faraday/digestauth'
 require 'json'
 
 class Promoluiz
@@ -11,7 +12,7 @@ class Promoluiz
 
   def fetch_converted_promocoes
     conn = Faraday.new BASE_URL
-    conn.request(:basic_auth, ENV['PROMOLUIZ_USERNAME'], ENV['PROMOLUIZ_PASSWORD'])
+    conn.request(:digest, ENV['PROMOLUIZ_USERNAME'], ENV['PROMOLUIZ_PASSWORD'])
 
     response = conn.post(
       'promocoes.json',
