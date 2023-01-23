@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
 
-ruby '2.7.2'
+ruby '3.1.1'
 
 gem 'dotenv', '~> 2.7'
 gem 'firebase', '~> 0.2'
+
 gem 'gasotoca', git: 'https://github.com/luizcarvalho/gasotoca', branch: 'main'
 gem 'google-api-client', '~> 0.53'
 
