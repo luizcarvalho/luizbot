@@ -4,9 +4,9 @@ ruby '3.1.1'
 
 gem 'dotenv', '~> 2.7'
 gem 'firebase', '~> 0.2'
-gem 'nokogiri'
+gem 'nokogiri', '1.14'
 
-gem 'gasotoca', git: 'https://github.com/luizcarvalho/gasotoca', branch: 'main'
+# gem 'gasotoca', git: 'https://github.com/luizcarvalho/gasotoca', branch: 'main'
 gem 'google-api-client', '~> 0.53'
 
 gem 'httplog', '~> 1.4'
