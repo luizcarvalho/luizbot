@@ -19,13 +19,18 @@ class Promoluiz
       { "promocao": { "promotional_text": @message } }.to_json,
       'Content-Type' => 'application/json'
     )
+    parse_body(response.body)
+  end
 
-    JSON.parse(response.body)
+  def parse_body(body)
+    JSON.parse(body)
+  rescue StandardError => e
+    puts e.message
+    { 'message_promocao' => e.message }
   end
 
   def message_versions
     converted_promocoes = fetch_converted_promocoes
-
     "```\n#{converted_promocoes['message_promocao']}\n```"
   end
 end
