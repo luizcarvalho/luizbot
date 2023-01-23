@@ -10,10 +10,6 @@ require_relative 'modules/amazon/amazon'
 module LuizBot
   class Handler
     def initialize
-      @apiai_client = ApiAiRuby::Client.new(
-        client_access_token: ENV['DIALOGFLOW_TOKEN']
-      )
-
       @firebase = FirebaseService.new
     end
 
@@ -56,8 +52,7 @@ module LuizBot
     end
 
     def default(bot, message)
-      response = @apiai_client.text_request message.text
-      text = response.dig(:result, :fulfillment, :messages).first[:speech] || 'opps, error in get Dialogflow response'
+      text = 'Ainda não sou capaz de realizar uma ação para esse comando!'
       send_message(bot, text)
     rescue StandardError => e
       puts e.backtrace

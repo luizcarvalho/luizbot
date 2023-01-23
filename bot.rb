@@ -1,6 +1,6 @@
 require 'dotenv/load'
 require 'telegram/bot'
-require 'api-ai-ruby'
+
 
 require_relative './lib/modules/modules'
 require_relative './config/routes'

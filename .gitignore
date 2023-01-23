@@ -1,5 +1,6 @@
 .env*
 bfg*
+*.7z
 
 config/credentials.json
 config/token.yaml

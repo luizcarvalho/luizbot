@@ -23,7 +23,7 @@ module LuizBot
       data = convert_text_message(text_message)
       return 'FAIL' unless data
       response = @fbase.client.get(INFO_TAG, { orderBy: "\"label\"", equalTo: "\"#{data[:label]}\""})
-      getting_value(response)
+      getting_value(response.gsub('\\n', "\n"))
     end
 
     def list(text_message)
