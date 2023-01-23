@@ -1,0 +1,9 @@
+# flyctl launch added from .gitignore
+**/.env.prod
+**/.env
+**/bfg*
+**/*.7z
+
+**/config/credentials.json
+**/config/token.yaml
+fly.toml
