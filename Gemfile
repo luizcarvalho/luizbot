@@ -5,7 +5,7 @@ ruby '3.1.1'
 gem 'dotenv', '~> 2.7'
 gem 'faraday-digestauth'
 gem 'firebase', '~> 0.2'
-gem 'nokogiri', '1.14'
+gem 'nokogiri', '1.14.3'
 
 # gem 'gasotoca', git: 'https://github.com/luizcarvalho/gasotoca', branch: 'main'
 gem 'google-api-client', '~> 0.53'

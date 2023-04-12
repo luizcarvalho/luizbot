@@ -79,7 +79,7 @@ GEM
     multi_json (1.15.0)
     multipart-post (2.2.3)
     net-http-digest_auth (1.4.1)
-    nokogiri (1.14.0-x86_64-linux)
+    nokogiri (1.14.3-x86_64-linux)
       racc (~> 1.4)
     os (1.1.4)
     pry (0.14.2)
@@ -140,7 +140,7 @@ DEPENDENCIES
   firebase (~> 0.2)
   google-api-client (~> 0.53)
   httplog (~> 1.4)
-  nokogiri (= 1.14)
+  nokogiri (= 1.14.3)
   pry
   rspec (~> 3.10)
   telegram-bot-ruby (~> 0.16)
