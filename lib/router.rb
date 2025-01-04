@@ -1,3 +1,4 @@
+require_relative 'handler'
 module LuizBot
   class Router
     RouteRule = Struct.new(
@@ -18,7 +19,10 @@ module LuizBot
     def self.dispatch(bot, text_message)
       handler = Handler.new
       matcheds = routes.map do |rule|
-        handler.send(rule.action, bot, text_message) if matches_pattern?(rule.pattern, text_message.text)
+        if matches_pattern?(rule.pattern, text_message.text)
+          handler.send(rule.action, bot, text_message)
+          true
+        end
       end
 
       if matcheds.any?

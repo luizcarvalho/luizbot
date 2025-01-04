@@ -9,6 +9,7 @@ require_relative './lib/utils'
 logger = Logger.new($stdout)
 
 Telegram::Bot::Client.run(ENV['TELEGRAM_TOKEN'], logger: logger) do |bot|
+  puts "bot.listen"
   bot.listen do |message|
     if message
       puts "#{message.from.first_name}[#{message.chat.id}]: #{message.text}"

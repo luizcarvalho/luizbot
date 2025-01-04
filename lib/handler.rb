@@ -1,11 +1,11 @@
 # frozen_string_literal: true
+
 require_relative 'modules/amazon/amazon'
 
 #   /set prisma placa `123123`\nrenavan `000000`
 #   /update prisma placa `123123`\nrenavan `000001`
 #   /list
 #   /get prisma
-
 
 module LuizBot
   class Handler
@@ -32,26 +32,15 @@ module LuizBot
       bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
     end
 
-    # def gasotoca(bot, message)
-    #   gasotoca = GasotocaWrapper.new(message)
-
-    #   send_message(
-    #     bot, gasotoca.message
-    #   )
-    # rescue StandardError => e
-    #   puts e.backtrace
-    #   send_message(bot, scape_text("ERROR: #{e.message}"))
-    # end
-
     def amazon_promotion(bot, message)
       promoluiz = Promoluiz.new(message.text)
 
       send_message(
-        bot, promoluiz.message_versions
+        bot, promoluiz.converted_message
       )
     end
 
-    def default(bot, message)
+    def default(bot, _message)
       text = 'Ainda não sou capaz de realizar uma ação para esse comando!'
       send_message(bot, text)
     rescue StandardError => e
