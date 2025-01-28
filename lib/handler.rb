@@ -10,23 +10,23 @@ require_relative 'modules/amazon/amazon'
 module LuizBot
   class Handler
     def initialize
-      @firebase = FirebaseService.new
+      # @firebase = FirebaseService.new
     end
 
-    def send_data(bot, message)
-      result_message = @firebase.push(message.text)
-      bot.api.send_message(chat_id: message.chat.id, text: result_message, parse_mode: 'markdown')
-    end
+    # def send_data(bot, message)
+    #   result_message = @firebase.push(message.text)
+    #   bot.api.send_message(chat_id: message.chat.id, text: result_message, parse_mode: 'markdown')
+    # end
 
-    def fetch_data(bot, message)
-      result_message = @firebase.get(message.text)
-      bot.api.send_message(chat_id: message.chat.id, text: result_message, parse_mode: 'markdown')
-    end
+    # def fetch_data(bot, message)
+    #   result_message = @firebase.get(message.text)
+    #   bot.api.send_message(chat_id: message.chat.id, text: result_message, parse_mode: 'markdown')
+    # end
 
-    def list_options(bot, message)
-      result_message = @firebase.list(message.text)
-      bot.api.send_message(chat_id: message.chat.id, text: result_message, parse_mode: 'markdown')
-    end
+    # def list_options(bot, message)
+    #   result_message = @firebase.list(message.text)
+    #   bot.api.send_message(chat_id: message.chat.id, text: result_message, parse_mode: 'markdown')
+    # end
 
     def update_data(bot, message)
       bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
